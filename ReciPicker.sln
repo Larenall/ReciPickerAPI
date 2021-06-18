@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReciPicker", "ReciPicker\ReciPicker.csproj", "{C76AE57E-86ED-4D77-B5BE-7EE0C16BFDF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C76AE57E-86ED-4D77-B5BE-7EE0C16BFDF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76AE57E-86ED-4D77-B5BE-7EE0C16BFDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76AE57E-86ED-4D77-B5BE-7EE0C16BFDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76AE57E-86ED-4D77-B5BE-7EE0C16BFDF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65F0DF6B-C300-4B63-96D2-C0298898B773}
+	EndGlobalSection
+EndGlobal
