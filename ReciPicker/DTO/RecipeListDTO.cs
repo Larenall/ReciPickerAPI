@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ReciPicker.DTO
 {
-    public partial class RecipesDTO
+    public partial class RecipeListDTO
     {
         public int RecipeId { get; set; }
         public int UserId { get; set; }
@@ -20,7 +20,7 @@ namespace ReciPicker.DTO
         public string Info { get; set; }
         public string Method { get; set; }
 
-        public RecipesDTO(int RecipeId,int UserId,string Name,string ImgUrl,int Time, DateTime? AddDate,bool? IsApproved,List<int> Filters,string Info,string Method)
+        public RecipeListDTO(int RecipeId,int UserId,string Name,string ImgUrl,int Time, DateTime? AddDate,bool? IsApproved,List<int> Filters,string Info,string Method)
         {
             this.RecipeId = RecipeId;
             this.UserId = UserId;
@@ -33,6 +33,6 @@ namespace ReciPicker.DTO
             this.Info = Info;
             this.Method = Method;
         }
-        public RecipesDTO() { }
+        public RecipeListDTO() { }
     }
 }

@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace ReciPicker.DTO
 {
-    public class GetRegisterUser
+    public class InUserRegisterDTO
     {
         public string Login {get;set;}
         public string Email{ get; set; }
         public string Password { get; set; }
-        public GetRegisterUser(string Login,string Email,string Password)
+        public InUserRegisterDTO(string Login,string Email,string Password)
         {
             this.Login = Login;
             this.Email = Email;
             this.Password = Password;
         }
-        public GetRegisterUser() { }
+        public InUserRegisterDTO() { }
     }
 }

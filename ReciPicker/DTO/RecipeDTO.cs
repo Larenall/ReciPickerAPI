@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ReciPicker.DTO
 {
-    public class AddRecipeDTO
+    public class RecipeDTO
     {
         public int Userid { get; set; }
         public string Name { get; set; }
@@ -13,8 +13,8 @@ namespace ReciPicker.DTO
         public int Time { get; set; }
         public string RecipeDescr { get; set; }
         public string RecipeIngr { get; set; }
-        public List<AddRecipeFilters> Filters { get; set; }
-        public AddRecipeDTO(int UserID,string Name, string ImgUrl, int Time, string RecipeDescr, string RecipeIngr, List<AddRecipeFilters> Filters)
+        public List<RecipeFiltersDTO> Filters { get; set; }
+        public RecipeDTO(int UserID,string Name, string ImgUrl, int Time, string RecipeDescr, string RecipeIngr, List<RecipeFiltersDTO> Filters)
         {
             this.Userid = UserID;
             this.Name = Name;
@@ -24,6 +24,6 @@ namespace ReciPicker.DTO
             this.RecipeIngr = RecipeIngr;
             this.Filters = Filters;
         }
-        public AddRecipeDTO() { }
+        public RecipeDTO() { }
     }
 }

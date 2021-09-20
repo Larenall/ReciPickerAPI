@@ -24,14 +24,14 @@ namespace ReciPicker.Controllers
         }
 
         [HttpGet]
-        public List<RecipesDTO> GetRecipes()
+        public IEnumerable<RecipeListDTO> GetRecipes()
         {
             var recipeFilters =  db.RecipeFilterRelation.ToList().GroupBy(el => el.RecipeId, el => el.FilterId, (recipeId, filterId) => new RecipeFilters(recipeId, filterId.ToList())).ToList();
             var recipes = db.Recipes.ToList();
-            List<RecipesDTO> recipeDto = new List<RecipesDTO>();
+            List<RecipeListDTO> recipeDtoList = new List<RecipeListDTO>();
             recipes.ForEach(r => {
                 var details = db.RecipeDetails.FirstOrDefault(d => d.RecipeId == r.RecipeId);
-                recipeDto.Add(new RecipesDTO(
+                recipeDtoList.Add(new RecipeListDTO(
                     r.RecipeId,
                     r.UserId,
                     r.Name,
@@ -44,10 +44,10 @@ namespace ReciPicker.Controllers
                     details.Method
                     ));
             });
-            return recipeDto;
+            return recipeDtoList;
         }
         [HttpPost]
-        public void AddRecipe(AddRecipeDTO recipeInfo)
+        public void AddRecipe(RecipeDTO recipeInfo)
         {
             var newRecipe = new Recipe(recipeInfo.Userid, recipeInfo.Name, recipeInfo.ImgUrl, recipeInfo.Time, false);
             db.Recipes.Add(newRecipe);
@@ -57,7 +57,7 @@ namespace ReciPicker.Controllers
             db.SaveChanges();
         }
         [HttpPatch]
-        public void UpdateRecipe(RecipesDTO recipeInfo)
+        public void UpdateRecipe(RecipeListDTO recipeInfo)
         {
             var recipe = db.Recipes.FirstOrDefault(r => r.RecipeId == recipeInfo.RecipeId);
             var recipeDetails = db.RecipeDetails.FirstOrDefault(r => r.RecipeId == recipeInfo.RecipeId);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ReciPicker.DTO
 {
-    public class SendSignInUser
+    public class OutUserSignInDTO
     {
         public int UserID { get; set; }
 
@@ -14,7 +14,7 @@ namespace ReciPicker.DTO
         public bool IsPasswordCorrect { get; set; }
         public string Role { get; set; }
         public List<int> UserFavourite { get; set; }
-        public SendSignInUser(int UserID,string Login,bool UserExists, bool IsPasswordCorrect, string Role, List<int> UserFavourite)
+        public OutUserSignInDTO(int UserID,string Login,bool UserExists, bool IsPasswordCorrect, string Role, List<int> UserFavourite)
         {
             this.UserID = UserID;
             this.Login = Login;
@@ -24,11 +24,11 @@ namespace ReciPicker.DTO
             this.UserFavourite = UserFavourite;
 
         }
-        public SendSignInUser(bool UserExists, bool IsPasswordCorrect)
+        public OutUserSignInDTO(bool UserExists, bool IsPasswordCorrect)
         {
             this.UserExists = UserExists;
             this.IsPasswordCorrect = IsPasswordCorrect;
         }
-        public SendSignInUser() { }
+        public OutUserSignInDTO() { }
     }
 }

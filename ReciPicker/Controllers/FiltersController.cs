@@ -24,10 +24,10 @@ namespace ReciPicker.Controllers
 
         [HttpGet]
         [Authorize]
-        public List<FiltersDTO> GetFilters()
+        public IEnumerable<FilterGroupDTO> GetFilters()
         {
             var filters = db.Filters.OrderBy(el => el.Name).ToList().
-                GroupBy(f => f.Type, f => new FilterInfo(f.FilterId, f.Name), (fType, info) => new FiltersDTO(fType, info.ToList())).
+                GroupBy(f => f.Type, f => new FilterDTO(f.FilterId, f.Name), (fType, info) => new FilterGroupDTO(fType, info.ToList())).
                 OrderBy(el => el.Type).ToList();
             return filters;
         }

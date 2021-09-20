@@ -4,24 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace ReciPicker.DTO
 {
-    public class FiltersDTO
+    public class RecipeFiltersDTO
     {
-        
         public string Type { get; set; }
-        public List<FilterInfo> Filters { get; set; }
+        public FilterDTO Filters { get; set; }
 
-        public FiltersDTO(string Type, List<FilterInfo> Filters)
+        public RecipeFiltersDTO(string Type, FilterDTO Filters)
         {
             this.Type = Type;
             this.Filters = Filters;
         }
-        public FiltersDTO()
+        public RecipeFiltersDTO()
         {
 
         }
     }
-   
 }

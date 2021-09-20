@@ -9,11 +9,18 @@ namespace ReciPicker.DTO
 {
     public partial class UserFavouriteRecipesDTO
     {
+        public int Id { get; set; }
         public int RecipeId { get; set; }
         public int UserId { get; set; }
 
         public UserFavouriteRecipesDTO(int RecipeId, int UserId)
         {
+            this.RecipeId = RecipeId;
+            this.UserId = UserId;
+        }
+        public UserFavouriteRecipesDTO(int Id,int RecipeId, int UserId)
+        {
+            this.Id = Id;
             this.RecipeId = RecipeId;
             this.UserId = UserId;
         }

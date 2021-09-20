@@ -9,6 +9,6 @@ namespace ReciPicker.Helper
 {
     public interface IJwtAuthenticationManager
     {
-        string Authenticate(UserCred user, List<User> list);
+        string Authenticate(UserDTO user, List<User> list);
     }
 }

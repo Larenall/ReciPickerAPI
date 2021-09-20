@@ -23,9 +23,9 @@ namespace ReciPicker.Controllers
 
         
         [HttpPost]
-        public  void AddFavorite(UserFavouriteRecipes data)
+        public void AddFavorite(UserFavouriteRecipesDTO data)
         {
-            db.UserFavouriteRecipes.Add(data);
+            db.UserFavouriteRecipes.Add(data.asModel());
             db.SaveChanges();
         }
         [HttpDelete]

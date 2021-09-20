@@ -33,14 +33,14 @@ namespace ReciPicker.Controllers
         }
 
         [HttpGet]
-        public List<UserCred> GetAllUsers()
+        public IEnumerable<UserDTO> GetAllUsers()
         {
-            List<UserCred> result = new List<UserCred>();
-            db.Users.ToList().ForEach(el => result.Add(new UserCred(el.UserId, el.Login, el.Role)));
+            List<UserDTO> result = new List<UserDTO>();
+            db.Users.ToList().ForEach(el => result.Add(new UserDTO(el.UserId, el.Login, el.Role)));
             return result;
         }
         [HttpPost]
-        public SendRegisterUser Register(GetRegisterUser user)
+        public IActionResult Register(InUserRegisterDTO user)
         {
             bool loginTaken = db.Users.Any(u => u.Login == user.Login);
             bool emailTaken = db.Users.Any(u => u.Email == user.Email);
@@ -49,29 +49,30 @@ namespace ReciPicker.Controllers
                 (string salted, string salt) = userService.SaltPassword(user.Password);
                 db.Add(new User(user.Login, user.Email, salted, salt));
                 db.SaveChanges();
+                var newUser = db.Users.FirstOrDefault(u => u.Email == user.Email);
+                return Ok(new OutUserRegisterDTO(newUser.UserId, newUser.Login, loginTaken, emailTaken, "user", new List<int>()));
             }
-            var newUser = db.Users.FirstOrDefault(u => u.Email == user.Email);
-            return new SendRegisterUser(newUser.UserId, newUser.Login, loginTaken, emailTaken, "user", new List<int>());
+            return Ok(new OutUserRegisterDTO(loginTaken, emailTaken));
         }
 
 
         [HttpPut]
-        public SendSignInUser Login(GetSignInUser _user)
+        public OutUserSignInDTO Login(InUserSignInDTO _user)
         {
             User user = db.Users.FirstOrDefault(u => u.Login == _user.LoginOrEmail || u.Email == _user.LoginOrEmail);
             if (user == null)
             {
-                return new SendSignInUser(false, false);
+                return new OutUserSignInDTO(false, false);
             }
             if (!userService.ComparePassword(_user.Password, user.Salt, user.Password))
             {
-                return new SendSignInUser(true, false);
+                return new OutUserSignInDTO(true, false);
             }
 
             List<int> userFavourite = new List<int>();
             db.UserFavouriteRecipes.ToList().Where(el => el.UserId == user.UserId).ToList().ForEach(el => userFavourite.Add(el.RecipeId));
 
-            return new SendSignInUser(user.UserId, user.Login, true, true, user.Role, userFavourite);
+            return new OutUserSignInDTO(user.UserId, user.Login, true, true, user.Role, userFavourite);
         }
         [HttpPatch("pass")]
         public bool ChangePassword(UserChangePassDTO _user)
@@ -95,7 +96,7 @@ namespace ReciPicker.Controllers
             db.SaveChanges();
         }
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] UserCred user)
+        public IActionResult Authenticate(UserDTO user)
         {
             List<User> list = db.Users.ToList();
             var token = JwtAuthentiocationManager.Authenticate(user, list);

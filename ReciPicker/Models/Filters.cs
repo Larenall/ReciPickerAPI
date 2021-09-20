@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ReciPicker.Models
 {
-    public partial class Filters
+    public class Filters
     {
         public int FilterId { get; set; }
         public string Name { get; set; }

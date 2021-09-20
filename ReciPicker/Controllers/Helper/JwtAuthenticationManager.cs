@@ -20,7 +20,7 @@ namespace ReciPicker.Helper
         {
             this.key = key;
         }
-        public string Authenticate(UserCred user,List<User> list)
+        public string Authenticate(UserDTO user,List<User> list)
         {
             if (!list.Where(el=>el.Role == user.Role).Any(el => el.UserId== user.UserId && el.Login== user.Login))
             {
